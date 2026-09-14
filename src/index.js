@@ -1,13 +1,11 @@
 import './css/style.css';
+import Todo from './model/Todo.js';
 import Project from './model/Project.js';
-import './model/Todo.js';
-import Render from './dom/Render.js';
+import App from './model/App.js';
 
-const projects = [
-    new Project({ title: 'Work' }),
-    new Project({ title: 'Personal' }),
-    new Project({ title: 'Shopping' }),
-];
-console.log(projects);
-const renderer = new Render;
-renderer.renderProjects(projects);
+const app = new App();
+app.addProject(new Project({ title: 'Work' }));
+app.addProject(new Project({ title: 'Personal' }));
+app.addProject(new Project({ title: 'Shopping' }));
+
+console.log(app.projects);
