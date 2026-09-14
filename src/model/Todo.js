@@ -1,20 +1,28 @@
 const PRIORITIES = ['HIGH', 'MEDIUM', 'LOW'];
 export default class Todo {
     constructor({ title, desc = '', dueDate = null, priority = 'LOW' }) {
-        if (!title.trim()) {
+        if (typeof title !== "string" || !title.trim()) {
             throw new Error('Title is required');
         }
         if (!PRIORITIES.includes(priority)) {
-            throw new Error(`Unknown property ${priority}`);
+            throw new Error(`Unknown priority ${priority}`);
         }
-        this.ID = crypto.randomUUID();
+        this.id = crypto.randomUUID();
         this.title = title;
         this.desc = desc;
         this.dueDate = dueDate;
         this.priority = priority;
         this.completed = false;
     }
+
     toggle() {
         this.completed = !this.completed;
+    }
+
+    changePriority(prio) {
+        if (!PRIORITIES.includes(prio)) {
+            throw new Error(`Unknown property ${prio}`);
+        }
+        this.priority = prio;
     }
 }

@@ -1,6 +1,6 @@
 export default class Project {
     constructor({ title }) {
-        if (!title.trim()) {
+        if (typeof title !== 'string' || !title.trim()) {
             throw new Error('Title is required');
         }
         this.title = title;
@@ -10,9 +10,9 @@ export default class Project {
     addTodo(todo) {
         this.todos.push(todo);
     }
-    rmTodo(todo) {
+    removeTodo(todoId) {
         this.todos = this.todos.filter((item) => {
-            return item !== todo;
+            return item.id !== todoId;
         });
     }
 }
