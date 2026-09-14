@@ -4,12 +4,15 @@ export default class Project {
             throw new Error('Title is required');
         }
         this.title = title;
+        this.id = crypto.randomUUID();
         this.todos = [];
     }
     addTodo(todo) {
         this.todos.push(todo);
     }
     rmTodo(todo) {
-        this.todos = this.todos.filter((item) => {item !== todo;});
+        this.todos = this.todos.filter((item) => {
+            return item !== todo;
+        });
     }
 }
