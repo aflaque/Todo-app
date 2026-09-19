@@ -28,6 +28,9 @@ const todoViewer = new TodoView();
 todoViewer.onToggleTodo = (todoId) => {
     const proj = app.getSelectedProject();
     const todo = proj.getTodo(todoId);
+    if (!todo) {
+        throw new Error("there is no todo defined yet");
+    }
     todo.toggle();
     todoViewer.render(proj);
 };

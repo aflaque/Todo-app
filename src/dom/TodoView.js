@@ -1,18 +1,18 @@
 import Dom from './Dom.js';
 
 class TodoView {
-    constructor({ todoTab: todoTab = Dom.todoList } = {}) {
+    constructor({ todoTab = Dom.todoList } = {}) {
         this.todoTab = todoTab;
         this.onToggleTodo = null;
     }
     render(project) {
-        Dom.todoListTitle.textContent = `${project.title}`;
+        Dom.todoListTitle.textContent = project.title;
         this.todoTab.innerHTML = '';
         for (const todo of project.todos) {
             const container = document.createElement('div');
 
             const checklist = document.createElement('button');
-            checklist.textContent = 'tick';
+            checklist.textContent = todo.completed ? '✓' : '○';
             checklist.dataset.todoId = todo.id;
             checklist.addEventListener('click', () => {
                 if (this.onToggleTodo) {
