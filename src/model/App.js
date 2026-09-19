@@ -23,5 +23,11 @@ class App {
         }
         this.selectedProjectId = currProject.id;
     }
+    getSelectedProject() {
+        const selProj = this.projects.find((proj) => {
+            return proj.id === this.selectedProjectId;
+        });
+        return selProj;
+    }
 }
 export default App;

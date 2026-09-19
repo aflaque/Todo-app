@@ -1,4 +1,4 @@
-export default class Project {
+class Project {
     constructor({ title }) {
         if (typeof title !== 'string' || !title.trim()) {
             throw new Error('Title is required');
@@ -15,4 +15,8 @@ export default class Project {
             return item.id !== todoId;
         });
     }
+    getTodo(todoId) {
+        return this.todos.find (todo => todo.id === todoId);
+    }
 }
+export default Project;
