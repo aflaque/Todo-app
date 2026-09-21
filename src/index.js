@@ -29,9 +29,26 @@ todoViewer.onToggleTodo = (todoId) => {
     const proj = app.getSelectedProject();
     const todo = proj.getTodo(todoId);
     if (!todo) {
-        throw new Error("there is no todo defined yet");
+        throw new Error('there is no todo defined yet');
     }
     todo.toggle();
+    todoViewer.render(proj);
+};
+
+todoViewer.onDeleteTodo = (todoId) => {
+    const proj = app.getSelectedProject();
+    proj.removeTodo(todoId);
+    todoViewer.render(proj);
+};
+
+todoViewer.onEditTodo = (todoId) => {
+    const proj = app.getSelectedProject();
+    const todo = proj.getTodo(todoId);
+    const title = prompt('enter a new title', todo.title);
+    if (title === null) {
+        return;
+    }
+    todo.edit({ title: title });
     todoViewer.render(proj);
 };
 
